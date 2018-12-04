@@ -19,8 +19,12 @@ export function LogStream<T extends Constructor<any>>(BaseClass: T){
 
     static readonly [logStreamSymbol]: Readable = _LogStream_.createReadableStream();
 
-    logStream(): Readable {
+    static logStream(): Readable {
       return _LogStream_[logStreamSymbol];
+    };
+
+    logStream(): Readable {
+      return _LogStream_.logStream();
     }
 
     log(message: any, level: LEVEL = LEVEL.debug): void {
